@@ -4,6 +4,9 @@ pipeline {
     stage('env prepare') {
       steps {
         tool(name: 'maven-3.6.3', type: 'maven')
+        withCredentials([usernamePassword(credentialsId: 'docker_hub', passwordVariable: 'docker_hubPassword', usernameVariable: 'docker_hubUser')]) {
+            sh "docker login -u ${docker_hubUser} -p ${docker_hubPassword}"
+        }
       }
     }
 
