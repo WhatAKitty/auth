@@ -24,4 +24,5 @@ COPY auth-service.jar app.jar
 # 暴露端口
 EXPOSE 8080
 
-ENTRYPOINT [ "java" , "-jar" , "-Djava.awt.headless=true" , "-XX:+UseContainerSupport" , "/app.jar" ]
+ENTRYPOINT [ "java" , "-jar" , "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=36666" ,
+"-Djava.awt.headless=true" , "-XX:+UseContainerSupport" , "/app.jar" ]
